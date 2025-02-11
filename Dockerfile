@@ -1,6 +1,6 @@
 # Dockerfile
-# Use a base image with Java 17
-FROM eclipse-temurin:17-jre-focal
+# Use a base image with Java 21
+FROM eclipse-temurin:21-jre-focal
 
 # Set the working directory inside the container
 WORKDIR /app
