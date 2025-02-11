@@ -23,10 +23,10 @@ public class ServiceDAO {
 
 	    try {
 	        conn = DBConnection.getConnection();
-	        String sqlStr = "SELECT service.*, service_category.name as 'category'\r\n"
-	        		+ "FROM service\r\n"
-	        		+ "INNER JOIN service_category\r\n"
-	        		+ "ON service.service_category_id = service_category.id;";
+	        String sqlStr = "SELECT service.*, service_category.name AS \"category\"\n" +
+					"FROM service\n" +
+					"INNER JOIN service_category\n" +
+					"ON service.service_category_id = service_category.id;\n";
 	        
 	        Statement stmt = conn.createStatement();
 	        ResultSet rs = stmt.executeQuery(sqlStr);
@@ -61,7 +61,7 @@ public class ServiceDAO {
 
 	    try {
 	        conn = DBConnection.getConnection();
-	        String sqlStr = "SELECT service.*, service_category.name AS 'category' " +
+	        String sqlStr = "SELECT service.*, service_category.name AS \"category\"\n" +
 	                        "FROM service " +
 	                        "INNER JOIN service_category ON service.service_category_id = service_category.id " +
 	                        "WHERE service.service_category_id = ?";
