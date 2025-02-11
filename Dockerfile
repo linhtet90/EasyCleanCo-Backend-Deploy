@@ -13,20 +13,17 @@ COPY .mvn .mvn
 # Copy the pom.xml file
 COPY pom.xml .
 
-# Download dependencies (cached)
-RUN ./mvnw dependency:go-offline
-
 # Copy the source code
 COPY src src
 
-# Build the application
-RUN ./mvnw package -DskipTests
+RUN chmod +x mvnw
+RUN ./mvnw clean package -DskipTests
 
-# Specify the JAR file name
-ARG JAR_FILE=target/*.jar
+FROM eclipse-temurin:21-jre
 
-# Copy the JAR file into the container
-COPY ${JAR_FILE} app.jar
+WORKDIR /app
+
+COPY --from=build /app/target/*.jar app.jar
 
 # Expose the port the app runs on
 EXPOSE 8081
